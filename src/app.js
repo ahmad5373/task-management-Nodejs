@@ -12,7 +12,12 @@ const { createAdmin } = require("./controller/userController");
 
 dotenv.config();
 
-app.use(cors()) ;
+const corsOptions = {
+    credentials: true,
+    origin: ['http://localhost:3000', 'https://task-management-react-js-xi.vercel.app']
+};
+  
+app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(errorHandler);
