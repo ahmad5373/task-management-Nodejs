@@ -103,42 +103,6 @@ const getUserWithId = async (req, res) => {
     }
 };
 
-// const getUserWithId = async (req, res) => {
-//     const { id } = req.params;
-//     try {
-//         const userDetails = await User.aggregate([
-//             { $match: { _id: new mongoose.Types.ObjectId(id) } },
-//             {
-//                 $lookup: {
-//                     from: 'users',
-//                     localField: 'assignedUsers',
-//                     foreignField: '_id',
-//                     as: 'assignedUsersDetails'
-//                 }
-//             },
-//             {
-//                 $lookup: {
-//                     from: 'tasks',
-//                     localField: '_id',
-//                     foreignField: 'createdBy',
-//                     as: 'tasksDetails'
-//                 }
-//             },
-//             {
-//                 $project: {
-//                     name: 1, email: 1, role: 1,
-//                     assignedUsersDetails: { _id: 1, name: 1, email: 1, role: 1 },
-//                     tasksDetails: { _id: 1, title: 1, description: 1, dueDate: 1, status: 1 }
-//                 }
-//             }
-//         ]);
-
-//         return sendResponse(res, 200, "User details fetched successfully", [], userDetails);
-//     } catch (error) {
-//         return sendResponse(res, 500, `Error fetching user: ${error.message}`);
-//     }
-// };
-
 const editUser = async (req, res) => {
     const { id } = req.params;
     const { name, email, role, assignedUsers } = req.body;
